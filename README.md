@@ -3,7 +3,7 @@
 
 ## 概述  
 提供学号和密码，获取学生个人信息、学生所有课表、学生所有成绩的web api。  
-源码可以自行查看，使用了屁眼通红 + selenium模拟浏览器 + PIL处理验证码图片 + Tesseract识别验证码 + 美丽汤解析html + flask。  
+源码可以自行查看，使用了屁眼通红 + selenium模拟浏览器 + PIL处理验证码图片 + Tesseract人工智能识别验证码 + 美丽汤解析html + flask。  
 我校教务处的验证码还是比较弱智的，只有“x * y”和“x + y”两种形式，而且 x 和 y 都是个位数，甚至两个运算数和运算符都会出现在相同位置。所以用PIL把两个操作数和一个操作符的位置扣下来，然后单独识别。具体可以看源码。  
 > 验证码示例  
 > ![](https://zhjw.neu.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS?id=81.10000002454088)  
