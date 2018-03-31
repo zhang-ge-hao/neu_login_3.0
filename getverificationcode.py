@@ -1,7 +1,6 @@
 from PIL import ImageFilter
 from PIL import Image
 import pytesseract
-import threading
 import os
 
 threshold = 144
@@ -52,11 +51,8 @@ def get_verification_code_from_shot(image):
 
 def get_verification_code_from_driver(driver):
     driver.set_window_size(suitable_window_width, suitable_window_height)
-    lock = threading.RLock()
-    lock.acquire()
     driver.get_screenshot_as_file("shot.png")
     image = Image.open('shot.png')
-    lock.release()
     res = get_verification_code_from_shot(image)
     # print(res)
     os.remove('shot.png')

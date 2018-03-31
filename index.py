@@ -1,7 +1,9 @@
 from flask import Flask
 from flask import request
 from aaologinandgetpages import *
+from flaskfilelock import Lock
 app = Flask(__name__)
+app.lock = Lock.get_file_lock()
 
 
 demo_html = '''
@@ -34,7 +36,12 @@ def login_and_get_pages_api_caller():
     if 'data' in request.form:
         json_str = request.form['data']
         # print(request.form['data'])
-        return login_and_get_pages_api(json_str), 200, {'Content-Type': 'text/html; charset=utf-8'}
+        app.lock.acquire()
+        print('in')
+        res = login_and_get_pages_api(json_str)
+        app.lock.release()
+        print('out')
+        return res, 200, {'Content-Type': 'text/html; charset=utf-8'}
     return '', 400, {'Content-Type': 'text/plain'}
 
 
